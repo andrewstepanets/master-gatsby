@@ -82,7 +82,7 @@ export default function Nav() {
         </li>
         {/* <li>
           <button type="button" onClick={goToSliceMasters}>
-            Push ot go to the slicemaasters page
+            Push to go to the slicemaasters page
           </button>
         </li> */}
       </ul>
