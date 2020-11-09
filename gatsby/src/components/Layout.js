@@ -32,7 +32,7 @@ const ContentStyles = styled.div`
 
 export default function Layout({ children }) {
   return (
-    <div>
+    <>
       <GlobalStyles />
       <Typography />
       <SiteBorderStyles>
@@ -42,6 +42,6 @@ export default function Layout({ children }) {
           <Footer />
         </ContentStyles>
       </SiteBorderStyles>
-    </div>
+    </>
   );
 }

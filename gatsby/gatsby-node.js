@@ -73,7 +73,7 @@ async function fetchWinesAndTurnIntoNodes({
   const wines = await res.json();
   // 2. loop over each one
   for (const wine of wines) {
-    // create a nnode for each wine
+    // create a node for each wine
     const nodeMeta = {
       id: createNodeId(`wine-${wine.wine}`),
       parent: null,
