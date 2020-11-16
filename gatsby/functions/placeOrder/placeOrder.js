@@ -11,6 +11,17 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.handler = async (event, context) => {
+  const body = JSON.parse(event.body);
+  // Validate the data coming in is correct
+  console.log(body);
+  const requiredFields = ['email', 'name', 'order'];
+  for (const field of requiredFields) {
+    console.log(`Checking that ${field} is good`);
+  }
+  // send the email
+
+  // Send the success or error message
+
   // Test send an email
   const info = await transporter.sendMail({
     from: "Slick's Slices <slick@example.com>",
