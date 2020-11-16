@@ -33,7 +33,7 @@ export default function usePizza({ pizzas, values }) {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setMessage(null);
+    // setMessage('Go eat!');
 
     // gather all the data
     const body = {
