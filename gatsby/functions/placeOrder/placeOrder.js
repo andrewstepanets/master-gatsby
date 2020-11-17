@@ -40,8 +40,15 @@ function wait(ms = 0) {
 }
 
 exports.handler = async (event, context) => {
-  await wait(5000);
+  await wait(3000);
   const body = JSON.parse(event.body);
+  // Check if they have filled out the honeypot
+  if (body.mapleSyrup) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: 'Good bye' }),
+    };
+  }
   // Validate the data coming in is correct
 
   const requiredFields = ['email', 'name', 'order'];
