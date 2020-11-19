@@ -43,7 +43,6 @@ export default function usePizza({ pizzas, values }) {
       email: values.email,
       mapleSyrup: values.mapleSyrup,
     };
-    console.log(body);
     // 4. Send this data the a serverless function when they checkout
 
     const res = await fetch(
@@ -56,7 +55,6 @@ export default function usePizza({ pizzas, values }) {
         body: JSON.stringify(body),
       }
     );
-    console.log(res);
     const text = JSON.parse(await res.text());
 
     // check if everything worked
