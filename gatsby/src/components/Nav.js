@@ -16,7 +16,7 @@ import Logo from './Logo';
 // styled Nav component
 
 const NavStyles = styled.nav`
-  ${'' /* margin-bottom: 3rem; */}
+  /* margin-bottom: 3rem; */
   .logo {
     transform: translateY(-25%);
   }
@@ -66,6 +66,9 @@ const NavStyles = styled.nav`
   }
   @media (max-width: 600px) {
     --columns: 4;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--grey);
+    padding-bottom: 2rem;
     ul {
       grid-template-rows: auto auto;
       grid-template-columns: repeat(var(--columns), 1fr);
@@ -73,8 +76,14 @@ const NavStyles = styled.nav`
     }
     .logo-item {
       order: 0;
-      grid-column: 1/-1;
+      grid-column: 1 / -1;
     }
+    .logo {
+      transform: none;
+    }
+  }
+  @media (max-width: 500px) {
+    --columns: 2;
   }
 `;
 
