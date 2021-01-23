@@ -3,13 +3,13 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
 
-const WineGridStyles = styled.div`
+const BeerGridStyles = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 `;
 
-const SingleWineStyles = styled.div`
+const SingleBeerStyles = styled.div`
   border: 1px solid var(--grey);
   padding: 2rem;
   text-align: center;
@@ -24,45 +24,44 @@ const SingleWineStyles = styled.div`
   }
 `;
 
-export default function WinesPage({ data }) {
+export default function BeersPage({ data }) {
   return (
     <>
       <SEO
-        title={`Wines! We have ${data.wines.nodes.length} bottles of wine in stock`}
+        title={`Beers! We have ${data.beers.nodes.length} bottles of beer in stock`}
       />
       <h2 className="center">
-        We have {data.wines.nodes.length} Wines available. Dine in Only!
+        We have {data.beers.nodes.length} Beers available. Dine in Only!
       </h2>
-      <WineGridStyles>
-        {data.wines.nodes.map((wine) => {
-          const rating = Math.round(wine.rating.average);
+      <BeerGridStyles>
+        {data.beers.nodes.map((beer) => {
+          const rating = Math.round(beer.rating.average);
           return (
-            <SingleWineStyles key={wine.id}>
-              <img src={wine.image} alt={wine.name} />
-              <h3>{wine.name}</h3>
-              {wine.price}
+            <SingleBeerStyles key={beer.id}>
+              <img src={beer.image} alt={beer.name} />
+              <h3>{beer.name}</h3>
+              {beer.price}
               <p title={`${rating} out of 5 stars`}>
                 {`⭐️`.repeat(rating)}
                 <span style={{ filter: `grayscale(100%)`, display: `block` }}>
                   {`⭐️`.repeat(5 - rating)}
                 </span>
-                <small className="count">{wine.rating.reviews}</small>
+                <small className="count">{beer.rating.reviews}</small>
               </p>
-            </SingleWineStyles>
+            </SingleBeerStyles>
           );
         })}
-      </WineGridStyles>
+      </BeerGridStyles>
     </>
   );
 }
 
 export const query = graphql`
   query {
-    wines: allWine {
+    beers: allBeer {
       nodes {
         id
-        name: wine
-        winery
+        name
         image
         rating {
           reviews

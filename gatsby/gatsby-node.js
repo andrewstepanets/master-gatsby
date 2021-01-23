@@ -63,30 +63,31 @@ async function turnToppingsIntoPages({ graphql, actions }) {
   // 4. Pass topping data to pizza.js
 }
 
-async function fetchWinesAndTurnIntoNodes({
+async function fetchBeersAndTurnIntoNodes({
   actions,
   createNodeId,
   createContentDigest,
 }) {
-  // 1. Fetch a list of wines
-  const res = await fetch('https://sampleapis.com/wines/api/whites');
-  const wines = await res.json();
+  // 1. Fetch a list of beers
+  const res = await fetch('https://api.sampleapis.com/beers/ale');
+  const beers = await res.json();
+
   // 2. loop over each one
-  for (const wine of wines) {
-    // create a node for each wine
+  for (const beer of beers) {
+    // create a node for each beer
     const nodeMeta = {
-      id: createNodeId(`wine-${wine.wine}`),
+      id: createNodeId(`beer-${beer.name}`),
       parent: null,
       children: [],
       internal: {
-        type: 'Wine',
+        type: 'Beer',
         mediaType: 'application/json',
-        contentDigest: createContentDigest(wine),
+        contentDigest: createContentDigest(beer),
       },
     };
-    // 3. Create a node for that wine
+    // 3. Create a node for that beer
     actions.createNode({
-      ...wine,
+      ...beer,
       ...nodeMeta,
     });
   }
@@ -141,7 +142,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
 
 export async function sourceNodes(params) {
   // fetch a list of wines and source them into our gatsby API!
-  await Promise.all([fetchWinesAndTurnIntoNodes(params)]);
+  await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
 }
 
 export async function createPages(params) {
